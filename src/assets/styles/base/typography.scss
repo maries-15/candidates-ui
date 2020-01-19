@@ -1,0 +1,28 @@
+/**
+ * typography.scss
+ * Contains the sitewide fonts and typographic styles
+ */
+
+html {
+    font-family: Avenir, Helvetica, Arial, sans-serif;
+    font-kerning: normal;
+    font-size: 18px;
+}
+
+.heading-1 {
+    @include font(32px, 48px);
+}
+
+.heading-2 {
+    @include font(24px, 30px);
+}
+
+@include from-breakpoint('large') {
+    .heading-1 {
+        @include font(40px, 48px);
+    }
+
+    .heading-2 {
+        @include font(30px, 40px);
+    }
+}

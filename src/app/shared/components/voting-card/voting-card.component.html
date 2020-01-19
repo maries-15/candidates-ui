@@ -1,0 +1,55 @@
+<div class="image" [ngStyle]="{'background-image': 'url(\'./../../../../assets/images/' + cardData.image + '\')'}">
+    <div class="middle-container">
+        <div class="left-container"
+            *ngIf="cardData.voted !== undefined">
+            <div class="icon-filled"
+                [ngClass]="cardData.vote ? 'vote-up': 'vote-down'">
+                <ng-container 
+                    [ngTemplateOutlet]="cardData.voted ? thumbUp : thumbDown">
+                </ng-container>
+            </div>
+        </div>
+        <div class="info">
+            <div class="name">
+                <span>{{cardData.name}}</span>
+            </div>
+            <div class="time-job">
+                <span class="time">{{cardData.timeJob}}</span>
+                <span> in </span>
+                <span>{{cardData.timeArea}}</span>
+            </div>
+            <div class="description">
+                {{cardData.description}}
+            </div>
+            <div class="actions">
+                <div class="vote-up icon-filled">
+                    <ng-container [ngTemplateOutlet]="thumbUp"></ng-container>
+                </div>
+                <div class="vote-down icon-filled selected">
+                    <ng-container [ngTemplateOutlet]="thumbDown"></ng-container>
+                </div>
+                <button class="vote-now primary">Vote now</button>
+            </div>
+        </div>
+    </div>
+    <div class="votes-percentage">
+        <div class="votes-up"
+            [ngStyle]="{'width': getWidth(cardData.votesUp)}">
+            <ng-container [ngTemplateOutlet]="thumbUp"></ng-container>
+            <span class="thumb-percentage">{{getWidth(cardData.votesUp)}}</span>
+        </div>
+        <div class="votes-down"
+            [ngStyle]="{'width': getWidth(cardData.votesDown)}">
+            <span class="thumb-percentage">{{getWidth(cardData.votesDown)}}</span>
+            <ng-container [ngTemplateOutlet]="thumbDown"></ng-container>
+        </div>
+        
+
+    </div>
+    <ng-template #thumbDown>
+        <i class="thumb-icon fas fa-thumbs-down"></i>
+    </ng-template>
+    <ng-template #thumbUp>
+        <i class="thumb-icon fas fa-thumbs-up"></i>
+    </ng-template>
+</div>

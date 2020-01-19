@@ -1,0 +1,18 @@
+@import 'abstracts';
+
+:host {
+    display: block;
+    height: 50vh;
+    width: 100%;
+}
+
+.image {
+    @include backgroundImage();
+    background-image: url('./../../../../assets//images/papa.png');
+}
+
+@include from-breakpoint('medium') {
+    :host {
+        height: 100vh;
+    }
+}

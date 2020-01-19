@@ -1,0 +1,59 @@
+/**
+ * mixins.scss
+ * Contains the sitewide mixins
+ */
+
+@mixin from-breakpoint($bp) {
+    @if ($bp == 'x-small') {
+        @content;
+    }
+    @else {
+        @if map-has-key($breakpoints, $bp) {
+            $list: map-get($breakpoints, $bp);
+            $bp: nth($list, 1);
+        }
+
+        @media screen and (min-width: #{$bp}) {
+            @content;
+        }
+    }
+}
+
+@mixin at-breakpoint($bp, $orientation) {
+    @if map-has-key($breakpoints, $bp) {
+        $list: map-get($breakpoints, $bp);
+        $bp: nth($list, 1);
+    }
+
+    @media screen and (max-width: #{$bp}) {
+        @content;
+    }
+}
+
+@mixin font($font-size, $line-height, $font-weight:400) {
+    font-size: $font-size;
+    line-height: $line-height;
+    font-weight: $font-weight;
+}
+
+@mixin backgroundImage($url: '') {
+    background: colors('background-gray');
+    height: 100%; 
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+@mixin border(
+    $border-position: all,
+    $border-size: 1px,
+    $border-pattern: solid,
+    $border-color: colors('black')
+) {
+    @if $border-position == all {
+        border: $border-size $border-pattern $border-color;
+    }
+    @else {
+        border-#{$border-position}: $border-size $border-pattern $border-color;
+    }
+}

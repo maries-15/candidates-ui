@@ -1,0 +1,20 @@
+<app-full-page-image></app-full-page-image>
+<section class="container-layout">
+    <div class="message">
+        <div class="title">
+            <div>Speak out. Be heard.</div>
+            <div class="strong-text">Be counted</div>
+        </div>
+        <p class="description">
+            Rule of Thumb is a crowd source court of public opinion where anyone and everybody can speak out and speak freely. It's easy: You share your opinion, we analyze and put the data in a public report.
+        </p>
+        <i class="close-icon fas fa-times"></i>
+    </div>
+    <h1 class="heading-1">Votes</h1>
+    <div class="candidates">
+        <app-voting-card *ngFor="let candidate of candidates"
+            class="candidate"
+            [cardData]="candidate">
+        </app-voting-card>
+    </div>
+</section>
