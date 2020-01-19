@@ -13,19 +13,19 @@
     color: colors('white');
 
     .left-container {
-        padding-top: 7px;
+        padding-top: 8px;
     }
 
     .vote-up {
         &.icon-filled {
-            padding: 7px;
+            padding: 8px;
             background: colors('green');
         }
     }
 
     .vote-down {
         &.icon-filled {
-            padding: 7px;
+            padding: 8px;
             background: colors('yellow');
         }
     }
@@ -38,10 +38,12 @@
 }
 
 .info {
-    padding: 7px;
+    padding: 8px;
 
-    > div {
-        padding-bottom: 7px;
+    .name,
+    .description,
+    .time-job {
+        padding-bottom: 8px;
     }
 
     .name {
@@ -62,6 +64,10 @@
     }
 
     .actions {
+        input[type="radio"] {
+            display: none;
+        }
+
         .vote-up {
             margin-right: 10px;
             border: 1px solid colors('green');
@@ -72,8 +78,8 @@
             border: 1px solid colors('yellow');
         }
 
-        .selected {
-            border: 1px solid colors('white');
+        .checked {
+            box-shadow: 0 0 5px 2px colors('white');
         }
     }
 }

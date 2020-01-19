@@ -12,9 +12,11 @@
     </div>
     <h1 class="heading-1">Votes</h1>
     <div class="candidates">
-        <app-voting-card *ngFor="let candidate of candidates"
+        <app-voting-card *ngFor="let candidate of candidates; let index = index;"
             class="candidate"
-            [cardData]="candidate">
+            [cardData]="candidate"
+            [index]="index"
+            (voteAction)="UpdateVotes($event)">
         </app-voting-card>
     </div>
 </section>

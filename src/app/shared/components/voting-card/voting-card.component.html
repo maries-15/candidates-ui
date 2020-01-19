@@ -1,11 +1,10 @@
 <div class="image" [ngStyle]="{'background-image': 'url(\'./../../../../assets/images/' + cardData.image + '\')'}">
     <div class="middle-container">
-        <div class="left-container"
-            *ngIf="cardData.voted !== undefined">
+        <div class="left-container">
             <div class="icon-filled"
-                [ngClass]="cardData.vote ? 'vote-up': 'vote-down'">
-                <ng-container 
-                    [ngTemplateOutlet]="cardData.voted ? thumbUp : thumbDown">
+                [ngClass]="votingForm.value.vote ? 'vote-up': 'vote-down'">
+                <ng-container
+                    [ngTemplateOutlet]="votingForm.value.vote ? thumbUp : thumbDown">
                 </ng-container>
             </div>
         </div>
@@ -18,21 +17,49 @@
                 <span> in </span>
                 <span>{{cardData.timeArea}}</span>
             </div>
-            <div class="description">
-                {{cardData.description}}
-            </div>
-            <div class="actions">
-                <div class="vote-up icon-filled">
-                    <ng-container [ngTemplateOutlet]="thumbUp"></ng-container>
+            <div *ngIf="!submitted; else submittedContainer">
+                <div class="description">
+                    {{cardData.description}}
                 </div>
-                <div class="vote-down icon-filled selected">
-                    <ng-container [ngTemplateOutlet]="thumbDown"></ng-container>
-                </div>
-                <button class="vote-now primary">Vote now</button>
+                <form class="actions"
+                    [formGroup]="votingForm"
+                    (ngSubmit)="voteNow()">
+                    <label for="thumb-up-{{cardData.id}}">
+                        <div class="vote-up icon-filled"
+                            [ngClass]="{'checked': votingForm.value.vote === true}">
+                            <input id="thumb-up-{{cardData.id}}"
+                                name="vote"
+                                formControlName="vote"
+                                type="radio"
+                                [value]="true">
+                            <ng-container [ngTemplateOutlet]="thumbUp"></ng-container>
+                        </div>
+                    </label>
+                    <label for="thumb-down-{{cardData.id}}">
+                        <div class="vote-down icon-filled"
+                            [ngClass]="{'checked': votingForm.value.vote === false}">
+                            <input id="thumb-down-{{cardData.id}}"
+                                name="vote"
+                                formControlName="vote"
+                                type="radio"
+                                [value]="false">
+                            <ng-container [ngTemplateOutlet]="thumbDown"></ng-container>
+                        </div>
+                    </label>
+                    <button class="vote-now primary" type="submit">Vote now</button>
+                </form>
             </div>
+            <ng-template #submittedContainer>
+                <div class="description">Thank you for voting!</div>
+                <button class="vote-now primary"
+                    (click)="voteAgain()">
+                    Vote Again
+                </button>
+            </ng-template>
         </div>
     </div>
-    <div class="votes-percentage">
+    <div class="votes-percentage"
+        *ngIf="getTotalVotes() > 0">
         <div class="votes-up"
             [ngStyle]="{'width': getWidth(cardData.votesUp)}">
             <ng-container [ngTemplateOutlet]="thumbUp"></ng-container>

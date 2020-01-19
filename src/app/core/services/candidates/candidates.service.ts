@@ -1,56 +1,34 @@
-import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { map, catchError } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 
 @Injectable({
     providedIn: 'root'
 })
 export class CandidatesService {
-    candidates = [
-        {
-            name: 'Kanye West',
-            image: 'kayne.png',
-            description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod',
-            timeJob: '1 month ago',
-            timeArea: 'Entertainment',
-            votesUp: 64,
-            votesDown: 36,
-            voted: true
-        }, {
-            name: 'Mark Zuckemberg',
-            image: 'mark.png',
-            description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod',
-            timeJob: '1 month ago',
-            timeArea: 'Bussiness',
-            votesUp: 30,
-            votesDown: 40,
-            voted: false
-        }, {
-            name: 'Cristina Fernández de Kirchener',
-            image: 'cristina.png',
-            description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod',
-            timeJob: '1 month ago',
-            timeArea: 'Politics',
-            votesUp: 24,
-            votesDown: 48,
-            voted: false
-        }, {
-            name: 'Malala Yousafzai',
-            image: 'malala.png',
-            description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod',
-            timeJob: '1 month ago',
-            timeArea: 'Entertainment',
-            votesUp: 30,
-            votesDown: 40,
-            voted: false
-        }
-    ];
+    apiUrl = 'http://localhost:1337/candidate';
 
     constructor(
         private httpClient: HttpClient
     ) {}
 
 
-    get(): Array<{}> {
-        return this.candidates;
+    get(): Observable<{}> {
+        return this.httpClient.get('http://localhost:1337/candidate')
+            .pipe(
+                map(response => {
+                    return response;
+                })
+            );
+    }
+
+    update(id, data: {}): Observable<{}> {
+        return this.httpClient.patch(`${this.apiUrl}/${id}`, data)
+            .pipe(
+                map(response => {
+                    return response;
+                })
+            );
     }
 }

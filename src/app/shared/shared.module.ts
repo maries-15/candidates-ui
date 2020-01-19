@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
 import { LayoutHeaderComponent } from '@components/layout-header/layout-header.component';
@@ -12,6 +13,7 @@ import { VotingCardComponent } from './components/voting-card/voting-card.compon
 @NgModule({
     imports: [
         CommonModule,
+        ReactiveFormsModule,
         RouterModule
     ],
     declarations: [

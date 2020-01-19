@@ -4,19 +4,36 @@ import { CandidatesService } from '@services/candidates/candidates.service';
 
 @Component({
     selector: 'app-home',
-    templateUrl: './home.component.html',
-    styleUrls: ['./home.component.scss']
+    styleUrls: ['./home.component.scss'],
+    templateUrl: './home.component.html'
 })
 export class HomeComponent implements OnInit {
-    candidates: Array<{}>;
+    candidates;
 
 
     constructor(
         private candidatesService: CandidatesService
-    ) { }
+    ) {}
 
     ngOnInit() {
-        this.candidates = this.candidatesService.get();
+        this.candidatesService.get().subscribe((data) => {
+            this.candidates = data;
+        });
     }
 
+    UpdateVotes(entryData) {
+        const data = {};
+
+        if (entryData.vote) {
+            data['votesUp'] = entryData.cardData.votesUp + 1;
+        } else {
+            data['votesDown'] = entryData.cardData.votesDown + 1;
+        }
+
+        this.candidatesService.update(entryData.cardData.id , data)
+            .subscribe((updatedData) => {
+                entryData.cardData.votesUp = updatedData['votesUp'];
+                entryData.cardData.votesDown = updatedData['votesDown'];
+            });
+    }
 }
