@@ -1,0 +1,24 @@
+<div class="authentication-modal">
+    <div class="menu-content modal-header">
+        <ul class="menu-list">
+            <li class="menu-item modal-title">
+                <a (click)="selectOption('login')"
+                    [ngClass]="{'selected': selectedOption === 'login'}">
+                    Login
+                </a>
+            </li>
+            <li class="menu-item modal-title">
+                <a (click)="selectOption('register')"
+                    [ngClass]="{'selected': selectedOption === 'register'}">
+                    Register
+                </a>
+            </li>
+        </ul>
+    </div>
+    <div class="modal-body">
+        <ng-container [ngSwitch]="selectedOption">
+            <app-login *ngSwitchCase="'login'"></app-login>
+            <app-register *ngSwitchCase="'register'"></app-register>
+        </ng-container>
+    </div>
+</div>

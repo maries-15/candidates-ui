@@ -7,10 +7,19 @@
             </div>
             <div class="col-75">
                 <ul class="menu">
-                    <li class="menu-item"><a routerLink="/past-trials">Past Trials</a></li>
-                    <li class="menu-item"><a routerLink="/how-it-works">How it works</a></li>
-                    <li class="menu-item"><a>Log in/Sign Up</a></li>
+                    <li class="menu-item">
+                        <a routerLink="/past-trials">Past Trials</a>
+                    </li>
+                    <li class="menu-item">
+                        <a routerLink="/how-it-works">How it works</a>
+                    </li>
+                    <li class="menu-item">
+                        <a *ngIf="isLoggedIn; else logOutUser" (click)="logOut()">{{username}}, Log out</a>
+                    </li>
                     <li class="menu-item"><a><i class="fas fa-search"></i></a></li>
+                    <ng-template #logOutUser>
+                        <li class="menu-item"><a (click)="openLoginModal()">Log in/Sign Up</a></li>
+                    </ng-template>
                 </ul>
             </div>
     </div>

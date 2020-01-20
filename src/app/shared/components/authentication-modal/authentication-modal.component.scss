@@ -1,0 +1,31 @@
+@import 'abstracts';
+
+.authentication-modal {
+    .modal-header {
+        padding: 0;
+        border-bottom: 1px solid colors('background-gray');
+    }
+
+    .menu-list {
+        display: flex;
+        width: 100%;
+
+        .menu-item {
+            width: 50%;
+            text-align: center;
+
+            a {
+                display: block;
+                padding: 10px;
+
+                &:nth-child(1) {
+                    border-right: 1px solid colors('background-gray');
+                }
+
+                &.selected {
+                    border-bottom: 3px solid colors('green');
+                }
+            }
+        }
+    }
+}

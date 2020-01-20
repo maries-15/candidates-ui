@@ -1,31 +1,43 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { FormsModule } from '@angular/forms';
 
 import { AuthenticationService } from '@services/authentication/authentication.service';
-import { LayoutHeaderComponent } from './layout-header.component';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { RegisterComponent } from './register.component';
 
-describe('LayoutHeaderComponent', () => {
-    let component: LayoutHeaderComponent;
-    let fixture: ComponentFixture<LayoutHeaderComponent>;
+describe('RegisterComponent', () => {
+    let component: RegisterComponent;
+    let fixture: ComponentFixture<RegisterComponent>;
     const authenticationServiceMock = {
-        login: jasmine.createSpy('login')
+        register: jasmine.createSpy('register')
+    };
+    const ngbActiveModalMock = {
+        close: jasmine.createSpy('close')
     };
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
+            imports: [
+                FormsModule
+            ],
             declarations: [
-                LayoutHeaderComponent
+                RegisterComponent
             ],
             providers: [
                 {
                     provide: AuthenticationService,
                     useValue: authenticationServiceMock
+                },
+                {
+                    provide: NgbActiveModal,
+                    useValue: ngbActiveModalMock
                 }
             ]
         }).compileComponents();
     }));
 
     beforeEach(() => {
-        fixture = TestBed.createComponent(LayoutHeaderComponent);
+        fixture = TestBed.createComponent(RegisterComponent);
         component = fixture.componentInstance;
         fixture.detectChanges();
     });

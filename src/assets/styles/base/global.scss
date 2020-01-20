@@ -77,3 +77,28 @@ button {
 .col-75 {
     width: 75%;
 }
+
+// Bootstrap ovewrrite styles
+.form-control {
+    &.ng-invalid.ng-touched {
+        box-shadow: 0 0 0 3.5px colors('red');
+        border-color: colors('red');
+    }
+
+    &.ng-invalid.ng-touched:focus,
+    &:focus {
+        color: colors('black');
+        border-color: colors('green');
+        outline: 0;
+        box-shadow: 0 0 0 3.5px colors('green-transparent');
+    }
+}
+
+.btn-success,
+.btn-success:hover,
+.btn-success:focus,
+.btn-success:not(:disabled):not(.disabled):active {
+    background: colors('green-solid');
+    border-color: colors('green-solid');
+    min-width: 200px;
+}

@@ -27,10 +27,13 @@ $colors: (
     'transparent': transparent,
     'background-gray': #ebebeb,
     'background-empty-page': #f5f5fa,
+    'green-solid': rgba(48, 158, 153, 1),
     'green': rgba(48, 158, 153, 0.6),
+    'green-transparent': rgba(48, 158, 153, 0.2),
     'yellow': rgba(252, 178, 48, 0.82),
     'black': #000,
-    'white': #fff
+    'white': #fff,
+    'red': rgba(224, 11, 11, 0.2)
 );
 
 /**

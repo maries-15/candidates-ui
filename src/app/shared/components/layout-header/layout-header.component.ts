@@ -1,4 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+
+import { AuthenticationModalComponent } from '@components/authentication-modal/authentication-modal.component';
+import { AuthenticationService } from '@services/authentication/authentication.service';
 
 @Component({
     selector: 'app-layout-header',
@@ -6,11 +10,21 @@ import { Component, OnInit, Input } from '@angular/core';
     styleUrls: ['./layout-header.component.scss']
 })
 export class LayoutHeaderComponent implements OnInit {
-    @Input() headerImage: string;
+    @Input() isLoggedIn = false;
+    @Input() username: string;
 
-    constructor() { }
+    constructor(
+        private authenticationService: AuthenticationService,
+        private ngbModal: NgbModal
+    ) {}
 
-    ngOnInit() {
+    ngOnInit() { }
+
+    openLoginModal(): void {
+        this.ngbModal.open(AuthenticationModalComponent);
     }
 
+    logOut(): void {
+        this.authenticationService.logOut();
+    }
 }

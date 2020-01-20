@@ -9,12 +9,13 @@ export class LayoutService {
 
     constructor() {
         this.sharedData = {
-            headerImage: 'url'
+            isLoggedIn: false,
+            user: null
         };
     }
 
-    setSharedDate(newData: {}): void {
-        this.sharedData = {...this.sharedData, ...newData };
+    setSharedData(newData: {}): void {
+        this.sharedData = Object.assign(this.sharedData, newData);
     }
 
     getSharedData(): {} {
