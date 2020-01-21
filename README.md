@@ -20,6 +20,10 @@ Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.
 * [voting-card.component](https://github.com/maries-15/candidates-ui/blob/interation_js/src/app/shared/components/voting-card/voting-card.component.spec.ts)
 * [register.component](https://github.com/maries-15/candidates-ui/blob/interation_js/src/app/shared/components/register/register.component.spec.ts)
 
+## See Demo Images
+
+[Demo Images Here](https://github.com/maries-15/candidates-ui/tree/master/demo)
+
 ## Key aspects
 * Single responsibility per file.
 * Shared module to include shared components, pipes and directives.
