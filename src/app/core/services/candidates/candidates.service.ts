@@ -23,8 +23,8 @@ export class CandidatesService {
             );
     }
 
-    update(id, data: {}): Observable<{}> {
-        return this.httpClient.patch(`${API_SERVICE}candidate/${id}`, data)
+    update(data: {}): Observable<{}> {
+        return this.httpClient.post(`${API_SERVICE}vote`, data)
             .pipe(
                 map(response => {
                     return response;

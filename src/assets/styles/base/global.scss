@@ -38,7 +38,7 @@ body {
         background: colors('background-empty-page');
 
         .title {
-            padding-top: 20px;
+            padding: 20px 0;
         }
     }
 }
@@ -101,4 +101,26 @@ button {
     background: colors('green-solid');
     border-color: colors('green-solid');
     min-width: 200px;
+}
+
+.mobile-menu-accordion {
+    .card {
+        background: transparent;
+        border: none;
+
+        .card-header {
+            background: transparent;
+            padding: 0;
+            border: none;
+        }
+
+        .btn-link {
+            color: colors('white');
+        }
+
+        .card-body {
+            padding: 0;
+            margin-top: 10px;
+        }
+    }
 }

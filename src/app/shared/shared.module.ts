@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
-import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModalModule, NgbAccordionModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { LayoutHeaderComponent } from '@components/layout-header/layout-header.component';
 import { LayoutFooterComponent } from '@components/layout-footer/layout-footer.component';
@@ -15,6 +15,7 @@ import { AuthenticationModalComponent } from './components/authentication-modal/
 @NgModule({
     imports: [
         CommonModule,
+        NgbAccordionModule,
         NgbModalModule,
         FormsModule,
         ReactiveFormsModule,

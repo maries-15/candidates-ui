@@ -31,7 +31,7 @@ export class RegisterComponent implements OnInit {
             this.model.password &&
             this.model.status &&
             this.model.age &&
-            this.model.age > 18
+            this.model.age >= 18
         ) {
             this.authenticationService.register(this.model)
                 .subscribe((user) => {

@@ -10,7 +10,7 @@ import { CardData } from '@interfaces/cart-data.interface';
 })
 export class VotingCardComponent implements OnInit {
     @Input() cardData: CardData;
-    @Input() index: number;
+    @Input() userVotes: number;
     @Output() voteAction = new EventEmitter<{}>();
 
     submitted = false;
@@ -28,7 +28,7 @@ export class VotingCardComponent implements OnInit {
         this.submitted = true;
         this.voteAction.emit({
             cardData: this.cardData,
-            vote: this.votingForm.value.vote
+            typeVote: this.votingForm.value.vote ? 'votesUp' : 'votesDown'
         });
     }
 

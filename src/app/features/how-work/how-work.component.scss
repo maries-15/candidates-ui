@@ -1,0 +1,17 @@
+.not-logged-in {
+    text-align: center;
+
+    .message {
+        margin-bottom: 15px;
+    }
+}
+
+.list-group-item {
+    display: flex;
+    justify-content: space-between;
+
+    .votes {
+        min-width: 70px;
+        text-align: right;
+    }
+}

@@ -1,4 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { NgbAccordionModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AuthenticationService } from '@services/authentication/authentication.service';
 import { LayoutHeaderComponent } from './layout-header.component';
@@ -12,6 +13,9 @@ describe('LayoutHeaderComponent', () => {
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
+            imports: [
+                NgbAccordionModule
+            ],
             declarations: [
                 LayoutHeaderComponent
             ],

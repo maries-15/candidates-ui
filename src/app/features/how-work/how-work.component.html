@@ -1,3 +1,30 @@
 <section class="container-layout no-background empty-page">
-    <h1 class="title center">How It Works Page!</h1>
+    <h1 class="title center heading-1">Your votes!</h1>
+    <div class="loggedIn"
+        *ngIf="candidates && sharedData.isLoggedIn; else notLoggedIn">
+        <div *ngIf="candidates.length === 0">
+            You haven't voted yet, go home to start voting.
+        </div>
+        <ul class="list-group">
+            <li class="list-group-item"
+                *ngFor="let candidate of candidates">
+                    <span>{{ candidate.name }}</span>
+                    <div class="votes">
+                        <span>{{ sharedData.user.votes[candidate.id] || 0 }}</span>
+                        <span> votes</span>
+                    </div>
+            </li>
+        </ul>
+    </div>
+    <ng-template #notLoggedIn>
+        <div class="not-logged-in">
+            <div class="message">
+                Please log in and try again to load data.
+            </div>
+            <button class="btn btn-success"
+                (click)="getVotesPerUser()">
+                Try Again
+            </button>
+        </div>
+    </ng-template>
 </section>

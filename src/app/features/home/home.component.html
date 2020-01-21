@@ -15,7 +15,7 @@
         <app-voting-card *ngFor="let candidate of candidates; let index = index;"
             class="candidate"
             [cardData]="candidate"
-            [index]="index"
+            [userVotes]="shareData.user?.votes && (shareData.user?.votes[candidate.id] || 0)"
             (voteAction)="UpdateVotes($event)">
         </app-voting-card>
     </div>

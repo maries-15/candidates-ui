@@ -1,26 +1,39 @@
 <header class="header">
     <div class="inner-header container-layout">
-            <div class="col-25">
-                <a class="logo" routerLink="home">
-                    Rule of Thumb.
-                </a>
-            </div>
-            <div class="col-75">
-                <ul class="menu">
-                    <li class="menu-item">
-                        <a routerLink="/past-trials">Past Trials</a>
-                    </li>
-                    <li class="menu-item">
-                        <a routerLink="/how-it-works">How it works</a>
-                    </li>
-                    <li class="menu-item">
-                        <a *ngIf="isLoggedIn; else logOutUser" (click)="logOut()">{{username}}, Log out</a>
-                    </li>
-                    <li class="menu-item"><a><i class="fas fa-search"></i></a></li>
-                    <ng-template #logOutUser>
-                        <li class="menu-item"><a (click)="openLoginModal()">Log in/Sign Up</a></li>
-                    </ng-template>
-                </ul>
-            </div>
+        <div class="logo-container">
+            <a class="logo" routerLink="home">
+                Rule of Thumb.
+            </a>
+        </div>
+        <div class="col-75 desktop-menu">
+            <ng-container [ngTemplateOutlet]="menu"></ng-container>
+        </div>
+        <ngb-accordion #acc="ngbAccordion" class="mobile-menu-accordion">
+            <ngb-panel>
+                <ng-template ngbPanelTitle>
+                    <i class="fas fa-bars"></i>
+                </ng-template>
+                <ng-template ngbPanelContent>
+                    <ng-container [ngTemplateOutlet]="menu"></ng-container>
+                </ng-template>
+            </ngb-panel>
+        </ngb-accordion>
     </div>
+    <ng-template #menu>
+        <ul class="menu">
+            <li class="menu-item">
+                <a routerLink="/past-trials">Past Trials</a>
+            </li>
+            <li class="menu-item">
+                <a routerLink="/how-it-works">Your Votes</a>
+            </li>
+            <li *ngIf="isLoggedIn; else logOutUser" class="menu-item">
+                <a (click)="logOut()">{{username}}, Log out</a>
+            </li>
+            <li class="menu-item search-icon"><a><i class="fas fa-search"></i></a></li>
+            <ng-template #logOutUser>
+                <li class="menu-item"><a (click)="openLoginModal()">Log in/Sign Up</a></li>
+            </ng-template>
+        </ul>
+    </ng-template>
 </header>

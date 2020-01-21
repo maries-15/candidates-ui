@@ -17,11 +17,12 @@
                 <span> in </span>
                 <span>{{cardData.timeArea}}</span>
             </div>
-            <div *ngIf="!submitted; else submittedContainer">
+            <div *ngIf="!submitted && (userVotes === undefined || userVotes < 3)">
                 <div class="description">
                     {{cardData.description}}
                 </div>
                 <form class="actions"
+                    *ngIf="userVotes === 0 || (userVotes && userVotes < 3)"
                     [formGroup]="votingForm"
                     (ngSubmit)="voteNow()">
                     <label for="thumb-up-{{cardData.id}}">
@@ -49,13 +50,14 @@
                     <button class="vote-now primary" type="submit">Vote now</button>
                 </form>
             </div>
-            <ng-template #submittedContainer>
+            <div *ngIf="submitted || (userVotes !== undefined && userVotes >= 3)">
                 <div class="description">Thank you for voting!</div>
-                <button class="vote-now primary"
+                <button *ngIf="userVotes && userVotes < 3"
+                    class="vote-now primary"
                     (click)="voteAgain()">
                     Vote Again
                 </button>
-            </ng-template>
+            </div>
         </div>
     </div>
     <div class="votes-percentage"

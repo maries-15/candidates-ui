@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { map } from 'rxjs/operators';
+import { catchError } from 'rxjs/operators';
 
 import { API_SERVICE } from '@services/constants/service.constants';
 import { LayoutService } from '@services/layout/layout.service';
@@ -17,8 +17,8 @@ export class AuthenticationService {
     register(data) {
         return this.httpClient.post(`${API_SERVICE}user`, data)
             .pipe(
-                map(response => {
-                    return response;
+                catchError(error => {
+                    return error;
                 })
             );
     }
@@ -26,8 +26,8 @@ export class AuthenticationService {
     login(data) {
         return this.httpClient.post(`${API_SERVICE}login`, data)
             .pipe(
-                map(response => {
-                    return response;
+                catchError(error => {
+                    return error;
                 })
             );
     }

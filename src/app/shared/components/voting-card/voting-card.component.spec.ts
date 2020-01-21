@@ -32,9 +32,40 @@ describe('VotingCardComponent', () => {
             votesDown: 3
         };
         fixture.detectChanges();
+
+        spyOn(component.voteAction, 'emit').and.callThrough();
     });
 
     it('should create', () => {
         expect(component).toBeTruthy();
+    });
+
+    it('should vote with default selected value', () => {
+        component.voteNow();
+
+        expect(component.voteAction.emit).toHaveBeenCalledWith({
+            cardData: component.cardData,
+            typeVote: 'votesUp'
+        });
+    });
+
+    it('should vote with new selected value', () => {
+        component.votingForm.controls.vote.setValue(false);
+        component.voteNow();
+
+        expect(component.voteAction.emit).toHaveBeenCalledWith({
+            cardData: component.cardData,
+            typeVote: 'votesDown'
+        });
+    });
+
+    it('should get total votes from given cardData', () => {
+        expect(component.getTotalVotes()).toEqual(10);
+    });
+
+    it('should get percentage of votes depending on entry data', () => {
+        expect(component.getWidth(3)).toEqual('30%');
+        expect(component.getWidth(5)).toEqual('50%');
+        expect(component.getWidth(1)).toEqual('10%');
     });
 });
